@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuCalculadoraSAT | Tipo de Cambio Oficial DOF y Banxico</title>
-    <meta name="description" content="Calculadora actualizada del tipo de cambio oficial del SAT para conversión de dólares a pesos mexicanos.">
+    <meta name="description" content="Calculadora actualizada del tipo de cambio oficial del SAT para conversión de dólares a pesos mexicanos con datos de Banxico.">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -48,13 +48,12 @@
             text-decoration: none;
         }
 
-        /* Estilo de la Calculadora */
         .card {
             background: var(--card-bg);
             border-radius: 1rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .status-badge {
@@ -79,13 +78,15 @@
             margin-top: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         label {
             font-weight: 600;
             font-size: 0.9rem;
             color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         input {
@@ -105,23 +106,37 @@
 
         .result-box {
             background: #f3f4f6;
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: 0.5rem;
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
         .result-val {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #059669;
         }
 
-        /* Texto SEO */
+        .trust-banner {
+            background: #eef2ff;
+            border-left: 4px solid #1a56db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #1e42af;
+        }
+
         .info-section {
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.7;
+        }
+
+        .info-section h3 {
+            color: var(--text-main);
+            margin-top: 1.5rem;
         }
 
         footer {
@@ -133,14 +148,14 @@
         }
 
         .ads-placeholder {
-            background: #ebebeb;
+            background: #f3f4f6;
+            border: 1px dashed #d1d5db;
             height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 2rem 0;
-            border: 1px dashed #ccc;
-            color: #999;
+            color: #9ca3af;
         }
     </style>
 </head>
@@ -167,93 +182,16 @@
             
             <div class="result-box">
                 <label>Resultado en Pesos (MXN)</label>
-                <div class="result-val">$ <span id="mxn-output">0.00</span></div>
+                <div class="result-val">$ <span id="mxn-output">0.0000</span></div>
             </div>
         </div>
     </div>
 
-    <div style="background: #eef2ff; border-left: 4px solid #1a56db; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: #1e42af;">
+    <div class="trust-banner">
         <strong>✓ Fuente Oficial:</strong> Datos sincronizados en tiempo real con la API de <strong>Banxico</strong>. 
-        Cumple con el Art. 20 del Código Fiscal de la Federación (CFF) para efectos de facturación y contabilidad en México.
+        Cumple con el Art. 20 del CFF para efectos de facturación y contabilidad en México.
     </div>
 
-    <div class="info-section">
-        <h3 style="color: #111827;">¿Cómo funciona el Tipo de Cambio SAT?</h3>
-        <p>Esta herramienta utiliza la API oficial del <strong>Banco de México</strong> para obtener el tipo de cambio <strong>FIX</strong>. Este valor es el que legalmente se publica en el Diario Oficial de la Federación (DOF) para solventar obligaciones fiscales.</p>
-        
-        <h3 style="color: #111827;">Importancia para la Contabilidad (Art. 20 CFF)</h3>
-        <p>Para determinar las contribuciones y sus accesorios, se debe considerar el tipo de cambio del día anterior al pago. <strong>TuCalculadoraSAT</strong> te facilita este dato de forma automática, con la precisión de 4 decimales requerida por el sistema de facturación electrónica (CFDI).</p>
-        
-        <h3 style="color: #111827;">¿Es seguro usar este convertidor?</h3>
-        <p>Totalmente. No almacenamos tus datos ni los montos que calculas. La conversión se realiza de forma transparente utilizando los indicadores económicos más recientes de las instituciones financieras de México.</p>
-    </div>
-
-    <div class="ads-placeholder" style="background: #f3f4f6; border: 1px dashed #d1d5db; height: 90px; display: flex; align-items: center; justify-content: center; margin: 2rem 0; color: #9ca3af;">Espacio para Google AdSense (Contenido)</div>
     <div class="info-section">
         <h3>¿Cómo funciona el Tipo de Cambio SAT?</h3>
-        <p>Esta herramienta utiliza la API oficial del <strong>Banco de México</strong> para obtener el tipo de cambio <strong>FIX</strong>, el cual es publicado en el Diario Oficial de la Federación (DOF) por el Banco de México el día hábil bancario anterior a la fecha en que se causen las contribuciones.</p>
-        
-        <h3>Importancia para la Contabilidad</h3>
-        <p>De acuerdo con el Código Fiscal de la Federación, para determinar las contribuciones y sus accesorios, se debe considerar el tipo de cambio del día anterior al pago. <strong>TuCalculadoraSAT</strong> te facilita este dato de forma automática para evitar errores en tus facturas y cálculos de impuestos.</p>
-    </div>
-
-    <div class="ads-placeholder">Espacio para Google AdSense (Contenido)</div>
-
-</div>
-
-<footer>
-    <p>&copy; 2026 TuCalculadoraSAT.com | Datos informativos basados en Banxico.</p>
-</footer>
-
-<script>
-// --- CONFIGURACIÓN ---
-const TOKEN_BANXICO = 'TU_TOKEN_AQUI'; // Reemplaza con tu token real
-const SERIES_ID = 'SF43718'; // Serie del Tipo de Cambio FIX
-
-let tipoCambioHoy = 0;
-let tipoCambioDOF = 0;
-
-async function obtenerDatosBanxico() {
-    // Pedimos los últimos 2 datos para tener el de hoy y el que aplica legalmente
-    const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/${SERIES_ID}/datos/oportuno?token=${TOKEN_BANXICO}`;
-    
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const serie = data.bmx.series[0].datos;
-        
-        // El dato más reciente (Hoy)
-        tipoCambioHoy = parseFloat(serie[0].dato);
-        const fechaHoy = serie[0].fecha;
-
-        // Para efectos fiscales del SAT, se usa el publicado el día anterior.
-        // Aquí mostramos el valor FIX que Banxico reporta como vigente.
-        document.getElementById('tc-valor').innerText = tipoCambioHoy.toFixed(4);
-        document.getElementById('fecha-actualizada').innerText = fechaHoy;
-        
-        // Guardamos para la calculadora
-        window.tipoCambioOficial = tipoCambioHoy;
-        
-    } catch (error) {
-        console.error('Error al consultar Banxico:', error);
-        document.getElementById('tc-valor').innerText = "Error de conexión";
-    }
-}
-
-function calcular() {
-    const usd = document.getElementById('usd-input').value;
-    const output = document.getElementById('mxn-output');
-    
-    if (usd > 0 && window.tipoCambioOficial > 0) {
-        const resultado = usd * window.tipoCambioOficial;
-        output.innerText = resultado.toLocaleString('es-MX', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-    } else {
-        output.innerText = "0.0000";
-    }
-}
-
-obtenerDatosBanxico();
-</script>
-
-</body>
-</html>
+        <p>Esta herramienta utiliza la API oficial del <strong>Banco de México</strong> para obtener el tipo de cambio <strong>FIX</strong>. Este valor es el que
