@@ -10,12 +10,11 @@
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #111827; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .container { width: 100%; max-width: 450px; }
         .card { background: var(--card-bg); border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); padding: 30px; border: 1px solid #e5e7eb; }
-        .logo { text-align: center; color: var(--primary); font-weight: 800; font-size: 1.6rem; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .logo { text-align: center; color: var(--primary); font-weight: 800; font-size: 1.6rem; margin-bottom: 25px; }
         .tc-box { text-align: center; margin-bottom: 30px; padding: 15px; border-bottom: 1px solid #f3f4f6; }
         .tc-val { font-size: 2.8rem; font-weight: 700; color: var(--primary); display: block; line-height: 1; }
-        .label { font-size: 0.75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 8px; }
-        input { width: 100%; padding: 15px; font-size: 1.3rem; border: 2px solid #e5e7eb; border-radius: 10px; margin: 10px 0 20px 0; box-sizing: border-box; transition: all 0.2s; }
-        input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.1); }
+        .label { font-size: 0.75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px; }
+        input { width: 100%; padding: 15px; font-size: 1.3rem; border: 2px solid #e5e7eb; border-radius: 10px; margin: 10px 0 20px 0; box-sizing: border-box; }
         .result { background: #f0fdf4; border: 1px solid #dcfce7; padding: 20px; border-radius: 12px; text-align: center; }
         .res-val { font-size: 2.2rem; font-weight: 800; color: #15803d; }
         .trust { background: #eff6ff; border-left: 4px solid var(--primary); padding: 15px; font-size: 0.85rem; margin-top: 25px; color: #1e42af; border-radius: 4px; }
@@ -43,24 +42,26 @@
         </div>
 
         <div class="trust">
-            <strong>✓ Fuente Oficial:</strong> Datos en tiempo real vía API Banxico. Válido para CFF Art. 20 (Facturación y Contabilidad).
+            <strong>✓ Fuente Oficial:</strong> Datos en tiempo real vía API Banxico. Válido para CFF Art. 20.
         </div>
     </div>
 </div>
 
 <script>
-    // Token recuperado de la configuración previa
+    // Token verificado
     const TOKEN = '81518b534606f36a83624e532a87570994339965158671607ec010629ec97476'; 
     let valorDolar = 0;
 
     async function getData() {
+        // Usamos un proxy para evitar el bloqueo de CORS de Banxico
+        const proxy = "https://api.allorigins.win/get?url=";
+        const target = encodeURIComponent(`https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=${TOKEN}`);
+        
         try {
-            // Serie SF43718: Tipo de cambio pesos por dólar (FIX)
-            const r = await fetch(`https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=${TOKEN}`);
-            if (!r.ok) throw new Error('Error en respuesta');
-            
-            const d = await r.json();
-            const dato = d.bmx.series[0].datos[0];
+            const r = await fetch(proxy + target);
+            const data = await r.json();
+            const bmxData = JSON.parse(data.contents);
+            const dato = bmxData.bmx.series[0].datos[0];
             
             valorDolar = parseFloat(dato.dato);
             
@@ -68,19 +69,17 @@
             document.getElementById('fecha').innerText = 'Publicado el: ' + dato.fecha;
             
         } catch (e) {
-            console.error(e);
+            console.error("Error detallado:", e);
             document.getElementById('tcv').innerText = "Error";
-            document.getElementById('fecha').innerText = "Verifica la conexión o el Token.";
+            document.getElementById('fecha').innerText = "Error de conexión con el servidor.";
         }
     }
 
     function convertir() {
         const cant = document.getElementById('usd').value;
         const out = document.getElementById('res');
-        
         if(cant > 0 && valorDolar > 0) {
             const operacion = cant * valorDolar;
-            // Mostramos 4 decimales según requerimiento del SAT
             out.innerText = operacion.toLocaleString('es-MX', {
                 minimumFractionDigits: 4,
                 maximumFractionDigits: 4
