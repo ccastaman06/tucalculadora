@@ -190,47 +190,52 @@
 
 <script>
     // --- CONFIGURACIÓN ---
-    const TOKEN_BANXICO = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; // <--- PEGA TU TOKEN AQUÍ
-    const SERIES_ID = 'SF43718'; // ID para el Tipo de Cambio FIX
+const TOKEN_BANXICO = 'TU_TOKEN_AQUI'; // Reemplaza con tu token real
+const SERIES_ID = 'SF43718'; // Serie del Tipo de Cambio FIX
+
+let tipoCambioHoy = 0;
+let tipoCambioDOF = 0;
+
+async function obtenerDatosBanxico() {
+    // Pedimos los últimos 2 datos para tener el de hoy y el que aplica legalmente
+    const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/${SERIES_ID}/datos/oportuno?token=${TOKEN_BANXICO}`;
     
-    let tipoCambioGlobal = 0;
-
-    // Llamada a la API de Banxico
-    async function obtenerTipoCambio() {
-        const url = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/${SERIES_ID}/datos/oportuno?token=${TOKEN_BANXICO}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const serie = data.bmx.series[0].datos;
         
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            const dato = data.bmx.series[0].datos[0];
-            tipoCambioGlobal = parseFloat(dato.dato);
-            
-            // Actualizar interfaz
-            document.getElementById('tc-valor').innerText = tipoCambioGlobal.toFixed(4);
-            document.getElementById('fecha-actualizada').innerText = dato.fecha;
-        } catch (error) {
-            console.error('Error al consultar Banxico:', error);
-            document.getElementById('tc-valor').innerText = "Error";
-            // Valor de respaldo por si falla la API
-            tipoCambioGlobal = 17.00; 
-        }
-    }
+        // El dato más reciente (Hoy)
+        tipoCambioHoy = parseFloat(serie[0].dato);
+        const fechaHoy = serie[0].fecha;
 
-    function calcular() {
-        const usd = document.getElementById('usd-input').value;
-        const output = document.getElementById('mxn-output');
+        // Para efectos fiscales del SAT, se usa el publicado el día anterior.
+        // Aquí mostramos el valor FIX que Banxico reporta como vigente.
+        document.getElementById('tc-valor').innerText = tipoCambioHoy.toFixed(4);
+        document.getElementById('fecha-actualizada').innerText = fechaHoy;
         
-        if (usd > 0) {
-            const resultado = usd * tipoCambioGlobal;
-            output.innerText = resultado.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        } else {
-            output.innerText = "0.00";
-        }
+        // Guardamos para la calculadora
+        window.tipoCambioOficial = tipoCambioHoy;
+        
+    } catch (error) {
+        console.error('Error al consultar Banxico:', error);
+        document.getElementById('tc-valor').innerText = "Error de conexión";
     }
+}
 
-    // Iniciar carga al abrir la página
-    obtenerTipoCambio();
+function calcular() {
+    const usd = document.getElementById('usd-input').value;
+    const output = document.getElementById('mxn-output');
+    
+    if (usd > 0 && window.tipoCambioOficial > 0) {
+        const resultado = usd * window.tipoCambioOficial;
+        output.innerText = resultado.toLocaleString('es-MX', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+    } else {
+        output.innerText = "0.0000";
+    }
+}
+
+obtenerDatosBanxico();
 </script>
 
 </body>
