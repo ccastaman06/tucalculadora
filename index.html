@@ -3,161 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipo de Cambio SAT Hoy | Dólar Oficial Banxico</title>
+    <title>Dólar SAT Hoy | Tipo de Cambio Oficial Banxico</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; --white: #ffffff; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 10px; color: #1e293b; }
-        .wrapper { max-width: 800px; margin: 0 auto; }
-        
-        /* Espacios Publicitarios */
-        .ad-slot { background: #e2e8f0; border: 1px dashed #94a3b8; border-radius: 12px; margin: 15px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-
+        .wrapper { max-width: 850px; margin: 0 auto; }
+        .ad-slot { background: #e2e8f0; border: 1px dashed #94a3b8; border-radius: 12px; margin: 15px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.7rem; text-transform: uppercase; }
         header { text-align: center; margin: 25px 0; }
-        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
-        header p { color: #64748b; font-size: 0.95rem; margin-top: 5px; }
-
-        /* Card Principal */
+        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1.2px; }
         .card { background: var(--white); border-radius: 24px; box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 25px; }
         .data-table { width: 100%; border-collapse: collapse; }
         .data-table th { background: #f8fafc; padding: 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #f1f5f9; }
-        .data-table td { padding: 20px 15px; border-bottom: 1px solid #f1f5f9; }
-        
+        .data-table td { padding: 18px 15px; border-bottom: 1px solid #f1f5f9; }
         .val-num { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.7rem; text-align: right; }
-        .row-sat { background: #fffbeb; border-left: 6px solid var(--accent); }
+        .row-sat { background: #fffbeb; border-left: 8px solid var(--accent); }
         .row-sat .val-num { color: var(--accent); }
-
-        /* Calculadora */
         .calc-area { padding: 35px; text-align: center; border-top: 1px solid #f1f5f9; }
-        .input-main { width: 100%; max-width: 320px; padding: 15px; font-size: 2.2rem; border: 3px solid #e2e8f0; border-radius: 16px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; transition: border-color 0.3s; }
-        .input-main:focus { border-color: var(--accent); }
-
+        .input-main { width: 100%; max-width: 320px; padding: 15px; font-size: 2.2rem; border: 3px solid #e2e8f0; border-radius: 16px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; }
         .res-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .res-box { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; }
         .res-box.active { border-color: var(--accent); background: #fffbeb; }
-        .res-box strong { display: block; font-size: 1.6rem; margin-top: 5px; color: var(--primary); }
-        .res-box.active strong { color: var(--accent); }
-
-        /* Footer / Status */
-        .status-bar { padding: 10px; font-size: 0.7rem; text-align: center; color: #94a3b8; font-weight: 600; text-transform: uppercase; }
-        .dot { height: 8px; width: 8px; background-color: #ef4444; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .res-box strong { display: block; font-size: 1.6rem; margin-top: 5px; color: var(--accent); }
+        .history-card { background: #fff; border-radius: 20px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 15px; }
+        .h-item { padding: 10px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #f1f5f9; }
+        .h-fec { font-size: 0.6rem; color: #94a3b8; font-weight: 700; display: block; }
+        .h-val { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+        .status-bar { padding: 12px; font-size: 0.65rem; text-align: center; color: #94a3b8; font-weight: 800; text-transform: uppercase; background: #f8fafc; border-top: 1px solid #f1f5f9; }
+        .dot { height: 9px; width: 9px; background-color: #ef4444; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .dot.online { background-color: #22c55e; }
-
         @media (max-width: 600px) { .res-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="ad-slot">Espacio Publicitario Superior</div>
+    <div class="ad-slot">Publicidad Superior (Banner 728x90)</div>
 
     <header>
-        <h1>Dólar SAT Oficial</h1>
-        <p>Tipo de Cambio para Liquidación de Obligaciones (CF102)</p>
+        <h1>Dólar SAT Hoy</h1>
+        <p>Valores Oficiales Banxico | Cuadro CF102</p>
     </header>
 
     <div class="card">
         <table class="data-table">
             <thead>
-                <tr>
-                    <th>Concepto Oficial</th>
-                    <th>Vigencia</th>
-                    <th style="text-align: right;">MXN por USD</th>
-                </tr>
+                <tr><th>Concepto Oficial</th><th>Vigencia</th><th style="text-align: right;">MXN</th></tr>
             </thead>
             <tbody>
                 <tr class="row-sat">
                     <td><strong>Liquidación (DOF)</strong></td>
-                    <td id="f-liq">---</td>
+                    <td id="f-liq">Sincronizando...</td>
                     <td class="val-num" id="v-liq">0.0000</td>
                 </tr>
                 <tr>
                     <td>Dólar FIX</td>
-                    <td id="f-fix">---</td>
+                    <td id="f-fix">Sincronizando...</td>
                     <td class="val-num" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="calc-area">
-            <label style="display:block; font-size:0.75rem; font-weight:800; color:#64748b; margin-bottom:12px;">CANTIDAD A CONVERTIR (USD)</label>
+            <label style="display:block; font-size:0.7rem; font-weight:800; color:#64748b; margin-bottom:12px;">CONVERTIR DÓLARES A PESOS</label>
             <input type="number" id="usd-val" class="input-main" placeholder="0.00" oninput="runCalc()">
-            
             <div class="res-container">
-                <div class="res-box active">
-                    <small style="font-weight:800; font-size:0.65rem; color:#d97706;">TOTAL PAGO SAT</small>
-                    <strong id="res-sat">$ 0.00</strong>
-                </div>
-                <div class="res-box">
-                    <small style="font-weight:800; font-size:0.65rem; color:#64748b;">TOTAL REF. FIX</small>
-                    <strong id="res-fix">$ 0.00</strong>
-                </div>
+                <div class="res-box active"><small style="font-weight:800; color:#d97706;">PAGO SAT</small><strong id="res-sat">$ 0.00</strong></div>
+                <div class="res-box"><small style="font-weight:800; color:#64748b;">REF. FIX</small><strong id="res-fix" style="color:#1e3a8a;">$ 0.00</strong></div>
             </div>
-            
-            <button onclick="window.print()" style="margin-top:25px; padding:10px 20px; border-radius:8px; border:none; background:#e2e8f0; font-weight:600; cursor:pointer; color:#475569; font-size:0.8rem;">
-                🖨️ Generar Reporte de Impresión
-            </button>
         </div>
-        
-        <div class="status-bar">
-            <span id="status-dot" class="dot"></span> <span id="status-text">Desconectado de Banxico</span>
-        </div>
+        <div class="status-bar"><span id="status-dot" class="dot"></span> <span id="status-text">Buscando conexión segura...</span></div>
     </div>
 
-    <div class="ad-slot">Espacio Publicitario Inferior</div>
+    <div class="history-card">
+        <div style="font-weight:800; font-size:0.9rem; color:var(--primary);">Tendencia Últimos 7 Días (Serie SF60653)</div>
+        <div id="hist" class="hist-grid"></div>
+    </div>
+
+    <div class="ad-slot" style="margin-top:20px;">Publicidad Inferior</div>
 </div>
 
 <script>
-    const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; // <--- PEGA TU TOKEN AQUÍ
-    let valLiq = 17.8368; 
-    let valFix = 17.6922;
+    const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
+    let vL = 17.8368, vF = 17.6922;
+    const PROXIES = [
+        "https://api.allorigins.win/get?url=",
+        "https://corsproxy.io/?",
+        "https://thingproxy.freeboard.io/fetch/"
+    ];
 
-    async function sincronizar() {
-        const proxy = "https://api.allorigins.win/get?url=";
-        // Consultamos un rango de 7 días para extraer el valor legal de liquidación
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653,SF43718/datos/oportuno?token=${TOKEN}`;
+    async function sync(idx = 0) {
+        if(idx >= PROXIES.length) {
+            document.getElementById('status-text').innerText = "Error: Use VPN o cambie de red";
+            return;
+        }
+
+        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653,SF43718/datos/2026-03-01/2026-03-17?token=${TOKEN}`;
+        const url = PROXIES[idx] + encodeURIComponent(api);
 
         try {
-            const resp = await fetch(proxy + encodeURIComponent(api), { signal: AbortSignal.timeout(6000) });
-            const json = await resp.json();
-            const series = JSON.parse(json.contents).bmx.series;
+            const r = await fetch(url, { signal: AbortSignal.timeout(6000) });
+            const j = await r.json();
+            const b = j.contents ? JSON.parse(j.contents) : j;
+            const series = b.bmx.series;
 
             series.forEach(s => {
-                const ultimo = s.datos[0];
+                const d = s.datos;
                 if(s.idSerie === 'SF60653') {
-                    valLiq = parseFloat(ultimo.dato);
-                    document.getElementById('v-liq').innerText = valLiq.toFixed(4);
-                    document.getElementById('f-liq').innerText = ultimo.fecha;
+                    // Valor legal de hoy es el penúltimo si ya se actualizó el de mañana
+                    const p = d[d.length - 2];
+                    vL = parseFloat(p.dato);
+                    document.getElementById('v-liq').innerText = vL.toFixed(4);
+                    document.getElementById('f-liq').innerText = p.fecha;
+                    
+                    let h = '';
+                    [...d].reverse().slice(0,7).forEach(x => {
+                        h += `<div class="h-item"><span class="h-fec">${x.fecha}</span><span class="h-val">${parseFloat(x.dato).toFixed(4)}</span></div>`;
+                    });
+                    document.getElementById('hist').innerHTML = h;
                 } else {
-                    valFix = parseFloat(ultimo.dato);
-                    document.getElementById('v-fix').innerText = valFix.toFixed(4);
-                    document.getElementById('f-fix').innerText = ultimo.fecha;
+                    const u = d[d.length - 1];
+                    vF = parseFloat(u.dato);
+                    document.getElementById('v-fix').innerText = vF.toFixed(4);
+                    document.getElementById('f-fix').innerText = u.fecha;
                 }
             });
 
-            // Si todo salió bien, actualizamos el estado visual
             document.getElementById('status-dot').className = "dot online";
-            document.getElementById('status-text').innerText = "Sincronizado con Banxico SIE";
+            document.getElementById('status-text').innerText = "Verificado: Datos Oficiales Banxico";
             runCalc();
-
-        } catch (error) {
-            console.error("Fallo de conexión.");
-            // Si falla la API, verificamos si el dato base (17.8368) es coherente con la fecha de hoy
-            const hoy = new Date().toLocaleDateString('es-MX');
-            document.getElementById('f-liq').innerText = "Carga Fallida";
-            document.getElementById('status-text').innerText = "Error de Red: Datos No Validados";
+        } catch (e) {
+            console.warn("Proxy " + idx + " falló. Reintentando...");
+            sync(idx + 1);
         }
     }
 
     function runCalc() {
         const m = document.getElementById('usd-val').value;
-        if(m > 0) {
-            document.getElementById('res-sat').innerText = '$ ' + (m * valLiq).toLocaleString('es-MX', {minimumFractionDigits: 2});
-            document.getElementById('res-fix').innerText = '$ ' + (m * valFix).toLocaleString('es-MX', {minimumFractionDigits: 2});
-        }
+        document.getElementById('res-sat').innerText = '$ ' + (m * vL).toLocaleString('es-MX',{minimumFractionDigits:2});
+        document.getElementById('res-fix').innerText = '$ ' + (m * vF).toLocaleString('es-MX',{minimumFractionDigits:2});
     }
 
-    sincronizar();
+    sync();
 </script>
 </body>
 </html>
