@@ -3,122 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuCalculadoraSAT | Datos Oficiales Banxico CF102</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>TuCalculadoraSAT | Indicadores Oficiales Banxico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1e3a8a; --accent: #b45309; --bg: #f3f4f6; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 15px; color: #1f2937; }
-        .container { max-width: 550px; margin: 0 auto; }
-        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 25px; }
-        .header-logo { text-align: center; margin-bottom: 20px; font-weight: 800; color: var(--primary); font-size: 1.4rem; }
+        body { font-family: 'Inter', sans-serif; background: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 5px solid #1a56db; }
+        h2 { font-size: 1.2rem; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; color: #1a56db; }
         
-        /* Panel de Valores Banxico */
-        .data-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
-        .data-box { padding: 12px; border-radius: 8px; border: 1px solid #e5e7eb; position: relative; }
-        .data-box.active { border-color: var(--accent); background: #fffbeb; }
-        .data-label { font-size: 0.65rem; font-weight: 700; color: #6b7280; text-transform: uppercase; display: block; }
-        .data-val { font-size: 1.4rem; font-weight: 700; display: block; margin: 4px 0; }
-        .data-desc { font-size: 0.6rem; color: #9ca3af; line-height: 1.2; display: block; }
+        /* Tabla Técnica estilo Banxico */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 0.9rem; }
+        th { text-align: left; background: #f8fafc; padding: 12px; border-bottom: 2px solid #e2e8f0; color: #64748b; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-family: 'Roboto Mono', monospace; }
+        .highlight-row { background: #fffbeb; font-weight: bold; }
         
-        /* Inputs */
-        .input-section { margin-bottom: 20px; }
-        label { font-size: 0.8rem; font-weight: 600; margin-bottom: 6px; display: block; }
-        input { width: 100%; padding: 14px; font-size: 1.5rem; border: 2px solid #d1d5db; border-radius: 8px; box-sizing: border-box; }
+        .calc-section { background: #f1f5f9; padding: 20px; border-radius: 6px; margin-top: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #475569; }
+        input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1.2rem; box-sizing: border-box; }
         
-        /* Resultados */
-        .results { background: #f9fafb; border-radius: 8px; padding: 15px; border: 1px solid #e5e7eb; }
-        .res-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #eee; }
-        .res-row:last-child { border: none; }
-        .res-text { font-size: 0.85rem; color: #4b5563; }
-        .res-num { font-weight: 700; font-size: 1.1rem; }
-        .highlight-text { color: var(--accent); font-size: 1.3rem; }
-
-        .legal-note { margin-top: 15px; font-size: 0.7rem; color: #6b7280; font-style: italic; border-top: 1px solid #eee; padding-top: 10px; }
+        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .res-card { background: white; padding: 15px; border-radius: 4px; border: 1px solid #e2e8f0; text-align: center; }
+        .res-card span { display: block; font-size: 0.7rem; color: #64748b; margin-bottom: 5px; }
+        .res-card strong { font-size: 1.1rem; color: #0f172a; }
+        .legal { font-size: 0.7rem; color: #94a3b8; margin-top: 20px; line-height: 1.4; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-logo">TuCalculadoraSAT</div>
+    <h2>Indicadores Banxico (Cuadro CF102)</h2>
     
-    <div class="card">
-        <div class="data-panel">
-            <div class="data-box">
-                <span class="data-label">FIX (Determinación)</span>
-                <span id="fix-val" class="data-val" style="color:var(--primary)">0.0000</span>
-                <span class="data-desc">Valor determinado hoy por Banxico. Referencia de mercado.</span>
-            </div>
-            <div class="data-box active">
-                <span class="data-label">DOF (Para Pagos)</span>
-                <span id="dof-val" class="data-val" style="color:var(--accent)">0.0000</span>
-                <span class="data-desc">Valor oficial para solventar obligaciones hoy.</span>
-            </div>
-        </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Concepto / Serie</th>
+                <th>Valor Actual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dólar FIX (SF43718)</td>
+                <td id="val-fix">0.0000</td>
+            </tr>
+            <tr class="highlight-row">
+                <td>Dólar para Pagos DOF (SF60653)</td>
+                <td id="val-dof">0.0000</td>
+            </tr>
+            <tr>
+                <td>Dólar EUA / Bancos (SF43787)</td>
+                <td id="val-eua">0.0000</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="input-section">
-            <label>Monto en Dólares (USD)</label>
-            <input type="number" id="monto" placeholder="0.00" oninput="convertirTodo()" autofocus>
+    <div class="calc-section">
+        <div class="input-group">
+            <label>CANTIDAD EN DÓLARES (USD)</label>
+            <input type="number" id="usd-amt" placeholder="0.00" oninput="recalc()">
         </div>
-
-        <div class="results">
-            <div class="res-row">
-                <span class="res-text">Conversión para Pagos (DOF)</span>
-                <span class="res-num highlight-text" id="res-dof">$ 0.0000</span>
+        
+        <div class="res-grid">
+            <div class="res-card" style="border-top: 3px solid #d97706;">
+                <span>Total DOF (Pagos)</span>
+                <strong id="out-dof">$ 0.0000</strong>
             </div>
-            <div class="res-row">
-                <span class="res-text">Conversión Referencia (FIX)</span>
-                <span class="res-num" id="res-fix">$ 0.0000</span>
+            <div class="res-card">
+                <span>Total FIX (Referencia)</span>
+                <strong id="out-fix">$ 0.0000</strong>
             </div>
-        </div>
-
-        <div class="legal-note">
-            * Información sincronizada con el cuadro CF102 de Banxico. El tipo de cambio para pagos corresponde al publicado en el Diario Oficial de la Federación según el Art. 20 del CFF.
         </div>
     </div>
+
+    <p class="legal">
+        * Datos obtenidos en tiempo real de la API de Banxico. 
+        El valor resaltado corresponde al publicado en el DOF para solventar obligaciones fiscales según Art. 20 CFF.
+    </p>
 </div>
 
 <script>
-    // --- PEGA TU TOKEN AQUÍ ---
     const MI_TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
-    
-    let fixValue = 0;
-    let dofValue = 0;
+    let dFIX = 0, dDOF = 0, dEUA = 0;
 
-    async function fetchBanxico() {
+    async function init() {
         const proxy = "https://api.allorigins.win/get?url=";
-        // SF43718 = FIX | SF60653 = Pagos DOF
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653/datos/oportuno?token=${MI_TOKEN}`;
+        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653,SF43787/datos/oportuno?token=${MI_TOKEN}`;
         
         try {
             const r = await fetch(proxy + encodeURIComponent(api));
             const j = await r.json();
             const raw = JSON.parse(j.contents);
             
-            fixValue = parseFloat(raw.bmx.series[0].datos[0].dato);
-            dofValue = parseFloat(raw.bmx.series[1].datos[0].dato);
+            dFIX = parseFloat(raw.bmx.series[0].datos[0].dato);
+            dDOF = parseFloat(raw.bmx.series[1].datos[0].dato);
+            dEUA = parseFloat(raw.bmx.series[2].datos[0].dato);
             
-            document.getElementById('fix-val').innerText = fixValue.toFixed(4);
-            document.getElementById('dof-val').innerText = dofValue.toFixed(4);
+            document.getElementById('val-fix').innerText = dFIX.toFixed(4);
+            document.getElementById('val-dof').innerText = dDOF.toFixed(4);
+            document.getElementById('val-eua').innerText = dEUA.toFixed(4);
         } catch (e) {
-            document.getElementById('fecha').innerText = "Error de conexión";
+            console.error("Falla en API:", e);
         }
     }
 
-    function convertirTodo() {
-        const usd = document.getElementById('monto').value;
-        const outFix = document.getElementById('res-fix');
-        const outDof = document.getElementById('res-dof');
-        
-        if (usd > 0) {
-            outFix.innerText = '$ ' + (usd * fixValue).toLocaleString('es-MX', {minimumFractionDigits: 4, maximumFractionDigits: 4});
-            outDof.innerText = '$ ' + (usd * dofValue).toLocaleString('es-MX', {minimumFractionDigits: 4, maximumFractionDigits: 4});
+    function recalc() {
+        const amt = document.getElementById('usd-amt').value;
+        if (amt > 0) {
+            document.getElementById('out-fix').innerText = '$ ' + (amt * dFIX).toLocaleString('es-MX', {minimumFractionDigits:4});
+            document.getElementById('out-dof').innerText = '$ ' + (amt * dDOF).toLocaleString('es-MX', {minimumFractionDigits:4});
         } else {
-            outFix.innerText = "$ 0.0000";
-            outDof.innerText = "$ 0.0000";
+            document.getElementById('out-fix').innerText = "$ 0.0000";
+            document.getElementById('out-dof').innerText = "$ 0.0000";
         }
     }
 
-    fetchBanxico();
+    init();
 </script>
 
 </body>
