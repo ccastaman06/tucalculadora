@@ -3,157 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipo de Cambio SAT Hoy | Calculadora Oficial Banxico CF102</title>
+    <title>Tipo de Cambio SAT | Datos Oficiales CF102</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: #1e293b; padding: 20px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #1e293b; }
         .wrapper { max-width: 800px; margin: 0 auto; }
-        
-        /* Publicidad */
-        .ad-banner { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; }
-
-        /* Encabezado */
+        .ad-space { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; }
         header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
-        header p { color: #64748b; font-size: 1.1rem; margin: 10px 0 0 0; }
-
-        /* Tarjeta de Datos */
-        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 30px; }
+        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; }
+        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #f8fafc; padding: 12px 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; border-bottom: 2px solid #f1f5f9; }
-        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
-        
-        .serie-id { font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: #94a3b8; background: #f1f5f9; padding: 2px 5px; border-radius: 4px; }
-        .valor-txt { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.3rem; text-align: right; }
-        .fecha-top { font-weight: 700; display: block; color: #1e293b; }
-        .fecha-sub { font-size: 0.65rem; color: #64748b; display: block; margin-top: 2px; }
-
+        th { background: #f8fafc; padding: 12px 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+        .val-text { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.3rem; text-align: right; }
         .row-sat { background: #fffbeb; border-left: 6px solid var(--accent); }
-
-        /* Calculadora */
-        .calc-section { padding: 30px; background: #fff; border-top: 1px solid #f1f5f9; }
-        .input-box { max-width: 400px; margin: 0 auto 25px auto; text-align: center; }
-        label { font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 10px; }
-        input { width: 100%; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); }
-        
-        .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .res-item { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; }
-        .res-item span { font-size: 0.7rem; font-weight: 800; color: #64748b; display: block; margin-bottom: 5px; text-transform: uppercase; }
-        .res-item strong { font-size: 1.5rem; color: var(--primary); }
-        .res-item.active { border-color: var(--accent); background: #fffbeb; }
-        .res-item.active strong { color: var(--accent); }
-
-        .footer-legal { padding: 20px; background: #f8fafc; font-size: 0.75rem; color: #64748b; border-top: 1px solid #e2e8f0; line-height: 1.5; }
+        .calc-panel { padding: 30px; background: #fff; border-top: 1px solid #f1f5f9; text-align: center; }
+        input { width: 100%; max-width: 300px; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); }
+        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .res-item { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .res-item.gold { border-color: var(--accent); background: #fffbeb; }
+        .footer-info { padding: 20px; background: #f8fafc; font-size: 0.75rem; color: #64748b; border-top: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
-
 <div class="wrapper">
-    <div class="ad-banner">PUBLICIDAD (728x90)</div>
-
+    <div class="ad-space">PUBLICIDAD SUPERIOR</div>
     <header>
-        <h1>Tipo de Cambio SAT y Banxico</h1>
-        <p>Consulta Oficial Cuadro CF102 | Datos en Tiempo Real</p>
+        <h1>Tipo de Cambio SAT Hoy</h1>
+        <p>Consulta Oficial Banxico Cuadro CF102</p>
     </header>
-
     <div class="card">
         <table>
             <thead>
                 <tr>
-                    <th>Concepto Oficial</th>
-                    <th>Fechas Banxico</th>
-                    <th style="text-align: right;">MXN por USD</th>
+                    <th>Concepto</th>
+                    <th>Fecha</th>
+                    <th style="text-align: right;">Valor</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Dólar FIX <span class="serie-id">SF43718</span></td>
-                    <td><span class="fecha-top" id="f-fix">--/--/--</span><span class="fecha-sub">Determinación</span></td>
-                    <td class="valor-txt" id="v-fix">0.0000</td>
-                </tr>
                 <tr class="row-sat">
-                    <td>Dólar para Pagos (DOF) <span class="serie-id">SF60653</span></td>
-                    <td><span class="fecha-top" id="f-dof">--/--/--</span><span class="fecha-sub">Vigente para Liquidación Hoy</span></td>
-                    <td class="valor-txt" id="v-dof" style="color:var(--accent)">0.0000</td>
+                    <td>Dólar Liquidación (DOF)</td>
+                    <td id="f-liq">--/--/--</td>
+                    <td class="val-text" id="v-liq" style="color:var(--accent)">0.0000</td>
                 </tr>
                 <tr>
-                    <td>Dólar EUA <span class="serie-id">SF43787</span></td>
-                    <td><span class="fecha-top" id="f-eua">--/--/--</span><span class="fecha-sub">Referencia Mercado</span></td>
-                    <td class="valor-txt" id="v-eua">0.0000</td>
+                    <td>Dólar FIX</td>
+                    <td id="f-fix">--/--/--</td>
+                    <td class="val-text" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
-
-        <div class="calc-section">
-            <div class="input-box">
-                <label>Monto a convertir (USD)</label>
-                <input type="number" id="monto" placeholder="0.00" oninput="convertir()">
-            </div>
-            <div class="results-grid">
-                <div class="res-item active">
-                    <span>PARA PAGOS (DOF)</span>
-                    <strong id="res-dof">$ 0.0000</strong>
+        <div class="calc-panel">
+            <label style="display:block; font-size:0.7rem; font-weight:800; margin-bottom:10px;">CANTIDAD EN USD</label>
+            <input type="number" id="monto" placeholder="0.00" oninput="run()">
+            <div class="res-grid">
+                <div class="res-item gold">
+                    <span style="font-size:0.7rem; font-weight:800; display:block;">PAGO FISCAL</span>
+                    <strong id="out-dof" style="font-size:1.5rem; color:var(--accent)">$ 0.0000</strong>
                 </div>
                 <div class="res-item">
-                    <span>REFERENCIA (FIX)</span>
-                    <strong id="res-fix">$ 0.0000</strong>
+                    <span style="font-size:0.7rem; font-weight:800; display:block;">REFERENCIA FIX</span>
+                    <strong id="out-fix" style="font-size:1.5rem; color:var(--primary)">$ 0.0000</strong>
                 </div>
             </div>
         </div>
-        <div class="footer-legal">
-            <strong>Nota de Veracidad:</strong> Información obtenida directamente del SIE de Banxico. El valor <strong>DOF (Naranja)</strong> es el oficial para solventar obligaciones fiscales según el CFF Art. 20.
-        </div>
+        <div class="footer-info">Datos sincronizados directamente con el SIE de Banxico.</div>
     </div>
-
-    <div class="ad-banner">PUBLICIDAD (ANUNCIO INFERIOR)</div>
+    <div class="ad-space">PUBLICIDAD INFERIOR</div>
 </div>
 
 <script>
     const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
-    let vFIX = 0, vDOF = 0;
+    let dFIX = 0, dLIQ = 0;
 
-    async function cargar() {
+    async function init() {
         const proxy = "https://api.allorigins.win/get?url=";
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653,SF43787/datos/oportuno?token=${TOKEN}`;
+        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653/datos/oportuno?token=${TOKEN}`;
         
         try {
             const r = await fetch(proxy + encodeURIComponent(api));
             const j = await r.json();
             const series = JSON.parse(j.contents).bmx.series;
             
-            // MAPEO POR ID (Sin errores de orden)
             series.forEach(s => {
                 const val = parseFloat(s.datos[0].dato);
                 const fec = s.datos[0].fecha;
-
                 if(s.idSerie === 'SF43718') { 
-                    vFIX = val;
+                    dFIX = val;
                     document.getElementById('v-fix').innerText = val.toFixed(4);
                     document.getElementById('f-fix').innerText = fec;
-                } else if(s.idSerie === 'SF60653') { 
-                    vDOF = val;
-                    document.getElementById('v-dof').innerText = val.toFixed(4);
-                    document.getElementById('f-dof').innerText = fec;
-                } else if(s.idSerie === 'SF43787') { 
-                    document.getElementById('v-eua').innerText = val.toFixed(4);
-                    document.getElementById('f-eua').innerText = fec;
+                } else { 
+                    dLIQ = val;
+                    document.getElementById('v-liq').innerText = val.toFixed(4);
+                    document.getElementById('f-liq').innerText = fec;
                 }
             });
-        } catch (e) { console.error("Error al sincronizar con Banxico."); }
+        } catch (e) { console.error("Error API"); }
     }
 
-    function convertir() {
+    function run() {
         const m = document.getElementById('monto').value;
-        if (m > 0) {
-            document.getElementById('res-dof').innerText = '$ ' + (m * vDOF).toLocaleString('es-MX', {minimumFractionDigits: 4});
-            document.getElementById('res-fix').innerText = '$ ' + (m * vFIX).toLocaleString('es-MX', {minimumFractionDigits: 4});
-        } else {
-            document.getElementById('res-dof').innerText = "$ 0.0000";
-            document.getElementById('res-fix').innerText = "$ 0.0000";
-        }
+        document.getElementById('out-dof').innerText = '$ ' + (m * dLIQ).toLocaleString('es-MX', {minimumFractionDigits:4});
+        document.getElementById('out-fix').innerText = '$ ' + (m * dFIX).toLocaleString('es-MX', {minimumFractionDigits:4});
     }
-    cargar();
+    init();
 </script>
 </body>
 </html>
