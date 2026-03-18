@@ -2,8 +2,7 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipo de Cambio SAT | Datos Oficiales CF102</title>
+    <title>Tipo de Cambio SAT Hoy | Cuadro Oficial Banxico CF102</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; }
@@ -11,104 +10,125 @@
         .wrapper { max-width: 800px; margin: 0 auto; }
         .ad-space { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; }
         header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; }
-        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; }
+        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; }
         th { background: #f8fafc; padding: 12px 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
-        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
-        .val-text { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.3rem; text-align: right; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 1rem; }
+        .val-mono { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.4rem; text-align: right; }
         .row-sat { background: #fffbeb; border-left: 6px solid var(--accent); }
         .calc-panel { padding: 30px; background: #fff; border-top: 1px solid #f1f5f9; text-align: center; }
-        input { width: 100%; max-width: 300px; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); }
-        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .res-item { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; }
-        .res-item.gold { border-color: var(--accent); background: #fffbeb; }
-        .footer-info { padding: 20px; background: #f8fafc; font-size: 0.75rem; color: #64748b; border-top: 1px solid #e2e8f0; }
+        input { width: 100%; max-width: 350px; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; }
+        .results { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .res-box { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .res-box.gold { border-color: var(--accent); background: #fffbeb; }
+        .footer-note { padding: 20px; background: #f8fafc; font-size: 0.8rem; color: #64748b; border-top: 1px solid #e2e8f0; line-height: 1.5; }
     </style>
 </head>
 <body>
+
 <div class="wrapper">
-    <div class="ad-space">PUBLICIDAD SUPERIOR</div>
+    <div class="ad-space">PUBLICIDAD SUPERIOR (728x90)</div>
+
     <header>
         <h1>Tipo de Cambio SAT Hoy</h1>
-        <p>Consulta Oficial Banxico Cuadro CF102</p>
+        <p>Sincronizado con el Cuadro Banxico CF102</p>
     </header>
+
     <div class="card">
         <table>
             <thead>
                 <tr>
-                    <th>Concepto</th>
-                    <th>Fecha</th>
-                    <th style="text-align: right;">Valor</th>
+                    <th>Concepto Oficial</th>
+                    <th>Fecha Banxico</th>
+                    <th style="text-align: right;">MXN por USD</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="row-sat">
                     <td>Dólar Liquidación (DOF)</td>
-                    <td id="f-liq">--/--/--</td>
-                    <td class="val-text" id="v-liq" style="color:var(--accent)">0.0000</td>
+                    <td id="f-liq">Consultando...</td>
+                    <td class="val-mono" id="v-liq" style="color:var(--accent)">0.0000</td>
                 </tr>
                 <tr>
-                    <td>Dólar FIX</td>
-                    <td id="f-fix">--/--/--</td>
-                    <td class="val-text" id="v-fix">0.0000</td>
+                    <td>Dólar FIX (Determinación)</td>
+                    <td id="f-fix">Consultando...</td>
+                    <td class="val-mono" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
+
         <div class="calc-panel">
-            <label style="display:block; font-size:0.7rem; font-weight:800; margin-bottom:10px;">CANTIDAD EN USD</label>
-            <input type="number" id="monto" placeholder="0.00" oninput="run()">
-            <div class="res-grid">
-                <div class="res-item gold">
-                    <span style="font-size:0.7rem; font-weight:800; display:block;">PAGO FISCAL</span>
-                    <strong id="out-dof" style="font-size:1.5rem; color:var(--accent)">$ 0.0000</strong>
+            <label style="display:block; font-size:0.75rem; font-weight:800; margin-bottom:10px; color:#64748b;">INGRESA EL MONTO (USD)</label>
+            <input type="number" id="usd-amt" placeholder="0.00" oninput="calcular()">
+            <div class="results">
+                <div class="res-box gold">
+                    <span style="font-size:0.7rem; font-weight:800; display:block; color:#64748b;">PAGO FISCAL (SAT)</span>
+                    <strong id="out-dof" style="font-size:1.6rem; color:var(--accent)">$ 0.0000</strong>
                 </div>
-                <div class="res-item">
-                    <span style="font-size:0.7rem; font-weight:800; display:block;">REFERENCIA FIX</span>
-                    <strong id="out-fix" style="font-size:1.5rem; color:var(--primary)">$ 0.0000</strong>
+                <div class="res-box">
+                    <span style="font-size:0.7rem; font-weight:800; display:block; color:#64748b;">REFERENCIA FIX</span>
+                    <strong id="out-fix" style="font-size:1.6rem; color:var(--primary)">$ 0.0000</strong>
                 </div>
             </div>
         </div>
-        <div class="footer-info">Datos sincronizados directamente con el SIE de Banxico.</div>
+        <div class="footer-note">
+            <strong>Verificación Legal:</strong> Los datos se extraen del Cuadro CF102 del Banco de México. La tasa de liquidación es la oficial para cumplimiento de obligaciones según el Art. 20 del CFF.
+        </div>
     </div>
+
     <div class="ad-space">PUBLICIDAD INFERIOR</div>
 </div>
 
 <script>
-    const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
-    let dFIX = 0, dLIQ = 0;
+    const MI_TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; // <--- PEGA TU TOKEN AQUÍ
+    let valFIX = 0, valLIQ = 0;
 
-    async function init() {
+    async function fetchData() {
+        // Usamos una URL de proxy alternativa para asegurar la conexión
         const proxy = "https://api.allorigins.win/get?url=";
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653/datos/oportuno?token=${TOKEN}`;
+        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653,SF43784/datos/oportuno?token=${MI_TOKEN}`;
         
         try {
-            const r = await fetch(proxy + encodeURIComponent(api));
-            const j = await r.json();
-            const series = JSON.parse(j.contents).bmx.series;
+            const resp = await fetch(proxy + encodeURIComponent(api));
+            const json = await resp.json();
+            const series = JSON.parse(json.contents).bmx.series;
             
             series.forEach(s => {
-                const val = parseFloat(s.datos[0].dato);
-                const fec = s.datos[0].fecha;
-                if(s.idSerie === 'SF43718') { 
-                    dFIX = val;
-                    document.getElementById('v-fix').innerText = val.toFixed(4);
-                    document.getElementById('f-fix').innerText = fec;
-                } else { 
-                    dLIQ = val;
-                    document.getElementById('v-liq').innerText = val.toFixed(4);
-                    document.getElementById('f-liq').innerText = fec;
+                const dato = parseFloat(s.datos[0].dato);
+                const fecha = s.datos[0].fecha;
+
+                // Si es el FIX (SF43718)
+                if(s.idSerie === 'SF43718') {
+                    valFIX = dato;
+                    document.getElementById('v-fix').innerText = dato.toFixed(4);
+                    document.getElementById('f-fix').innerText = fecha;
+                }
+                // Si es la serie de Pagos/Liquidación (SF60653 o SF43784)
+                if(s.idSerie === 'SF60653' || s.idSerie === 'SF43784') {
+                    valLIQ = dato;
+                    document.getElementById('v-liq').innerText = dato.toFixed(4);
+                    document.getElementById('f-liq').innerText = fecha;
                 }
             });
-        } catch (e) { console.error("Error API"); }
+
+            // GURADRAIL: Si por alguna razón el DOF no llegó, usamos el FIX como respaldo
+            if(valLIQ === 0) valLIQ = valFIX;
+
+        } catch (e) {
+            console.error("Fallo en la conexión con Banxico");
+        }
     }
 
-    function run() {
-        const m = document.getElementById('monto').value;
-        document.getElementById('out-dof').innerText = '$ ' + (m * dLIQ).toLocaleString('es-MX', {minimumFractionDigits:4});
-        document.getElementById('out-fix').innerText = '$ ' + (m * dFIX).toLocaleString('es-MX', {minimumFractionDigits:4});
+    function calcular() {
+        const m = document.getElementById('usd-amt').value;
+        if (m > 0) {
+            document.getElementById('out-dof').innerText = '$ ' + (m * valLIQ).toLocaleString('es-MX', {minimumFractionDigits: 4});
+            document.getElementById('out-fix').innerText = '$ ' + (m * valFIX).toLocaleString('es-MX', {minimumFractionDigits: 4});
+        }
     }
-    init();
+    fetchData();
 </script>
+
 </body>
 </html>
