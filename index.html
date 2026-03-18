@@ -2,200 +2,167 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora Fiscal SAT | Banxico Oficial CF102</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipo de Cambio SAT Hoy | Dólar Oficial Banxico</title>
+    <meta name="description" content="Consulta el tipo de cambio oficial del SAT para hoy. Calculadora de dólar Banxico y Diario Oficial de la Federación.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f1f5f9; --white: #ffffff; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #1e293b; }
-        .wrapper { max-width: 900px; margin: 0 auto; }
+        :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; --text: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 10px; color: var(--text); line-height: 1.5; }
+        .wrapper { max-width: 850px; margin: 0 auto; }
         
-        /* Publicidad */
-        .ad-banner { background: #cbd5e1; border: 2px dashed #94a3b8; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #475569; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        /* Espacios para Adsense / Publicidad */
+        .ad-slot { background: #e2e8f0; border: 1px dashed #94a3b8; border-radius: 8px; margin: 15px 0; min-height: 95px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.7rem; text-transform: uppercase; }
 
-        /* Header */
-        header { text-align: center; margin-bottom: 30px; }
-        h1 { color: var(--primary); font-size: 2.5rem; font-weight: 800; margin: 0; letter-spacing: -1.5px; }
-        header p { color: #64748b; font-size: 1.1rem; margin-top: 5px; }
+        header { text-align: center; margin: 20px 0 30px; }
+        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+        header p { color: #64748b; font-size: 1rem; margin: 5px 0; }
 
-        /* Tarjeta Principal */
-        .main-card { background: var(--white); border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 30px; }
+        /* Card Principal */
+        .card { background: #fff; border-radius: 20px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 25px; }
         
         .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th { background: #f8fafc; padding: 18px; text-align: left; font-size: 0.75rem; color: #64748b; text-transform: uppercase; border-bottom: 2px solid #f1f5f9; }
-        .data-table td { padding: 20px; border-bottom: 1px solid #f1f5f9; }
+        .data-table th { background: #f8fafc; padding: 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #f1f5f9; }
+        .data-table td { padding: 18px 15px; border-bottom: 1px solid #f1f5f9; }
         
-        .val-display { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.8rem; text-align: right; color: var(--primary); }
-        .row-sat { background: #fffbeb; border-left: 8px solid var(--accent); }
-        .row-sat .val-display { color: var(--accent); }
+        .val-num { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.6rem; text-align: right; }
+        .row-highlight { background: #fffbeb; border-left: 6px solid var(--accent); }
+        .row-highlight .val-num { color: var(--accent); }
 
         /* Calculadora */
-        .calc-panel { padding: 40px; background: var(--white); text-align: center; }
-        .input-group { max-width: 450px; margin: 0 auto 30px auto; }
-        label { font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 12px; }
-        input { width: 100%; padding: 20px; font-size: 2.5rem; border: 3px solid #e2e8f0; border-radius: 16px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); transition: border-color 0.3s; }
-        input:focus { border-color: var(--accent); outline: none; }
+        .calc-section { padding: 30px; text-align: center; background: #fff; }
+        .input-box { width: 100%; max-width: 320px; padding: 15px; font-size: 2.2rem; border: 3px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; transition: border-color 0.2s; }
+        .input-box:focus { border-color: var(--accent); }
 
-        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .res-card { padding: 25px; border-radius: 20px; background: #f8fafc; border: 1px solid #e2e8f0; position: relative; }
-        .res-card.active { border-color: var(--accent); background: #fffbeb; }
-        .res-card small { font-size: 0.7rem; font-weight: 800; color: #64748b; text-transform: uppercase; }
-        .res-card strong { font-size: 1.8rem; display: block; margin-top: 10px; color: var(--primary); }
-        .res-card.active strong { color: var(--accent); }
+        .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .res-item { padding: 18px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .res-item.active { border-color: var(--accent); background: #fffbeb; }
+        .res-item strong { display: block; font-size: 1.5rem; margin-top: 5px; color: var(--primary); }
+        .res-item.active strong { color: var(--accent); }
 
-        /* Botones de Acción */
-        .actions { margin-top: 30px; display: flex; gap: 10px; justify-content: center; }
-        .btn { padding: 12px 24px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; transition: transform 0.2s; }
-        .btn:active { transform: scale(0.95); }
-        .btn-copy { background: #e2e8f0; color: #1e293b; }
-        .btn-print { background: var(--primary); color: white; }
+        /* Historial Robusto */
+        .history-card { background: #fff; border-radius: 15px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 15px; }
+        .hist-day { padding: 10px; background: #f8fafc; border-radius: 8px; text-align: center; border: 1px solid #f1f5f9; }
+        .h-fec { font-size: 0.6rem; color: #94a3b8; font-weight: 700; display: block; }
+        .h-val { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--primary); }
 
-        /* Histórico */
-        .history-section { background: white; border-radius: 20px; padding: 25px; border: 1px solid #e2e8f0; }
-        .history-header { font-size: 1rem; font-weight: 800; margin-bottom: 20px; color: var(--primary); display: flex; justify-content: space-between; }
-        .history-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
-        .hist-item { padding: 12px; background: #f8fafc; border-radius: 10px; text-align: center; border: 1px solid #f1f5f9; }
-        .hist-date { font-size: 0.65rem; color: #64748b; font-weight: 700; }
-        .hist-val { font-family: 'Roboto Mono', monospace; font-size: 0.9rem; font-weight: 700; display: block; margin-top: 4px; }
+        .btn-action { margin-top: 20px; padding: 12px 25px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; background: var(--primary); color: white; transition: opacity 0.2s; }
+        .btn-action:hover { opacity: 0.9; }
 
-        @media print { .ad-banner, .actions, .calc-panel input { display: none; } .wrapper { width: 100%; } }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .res-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="ad-banner">Espacio Publicitario (Leaderboard 728x90)</div>
+    <div class="ad-slot">PUBLICIDAD SUPERIOR (Responsive Banner)</div>
 
     <header>
-        <h1>Calculadora de Dólar SAT</h1>
-        <p>Datos Oficiales Banxico | Cumplimiento Fiscal México</p>
+        <h1>Dólar SAT Hoy</h1>
+        <p>Tipo de Cambio Oficial para México (Banxico)</p>
     </header>
 
-    <div class="main-card">
+    <div class="card">
         <table class="data-table">
             <thead>
                 <tr>
-                    <th>Concepto Oficial</th>
-                    <th>Vigencia Fiscal</th>
-                    <th style="text-align: right;">MXN por USD</th>
+                    <th>Concepto</th>
+                    <th>Vigencia</th>
+                    <th style="text-align: right;">Valor MXN</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="row-sat">
-                    <td><strong>Liquidación de Obligaciones (DOF)</strong></td>
-                    <td id="f-liq">Cargando...</td>
-                    <td class="val-display" id="v-liq">0.0000</td>
+                <tr class="row-highlight">
+                    <td><strong>Liquidación (DOF)</strong></td>
+                    <td id="f-liq">---</td>
+                    <td class="val-num" id="v-liq">0.0000</td>
                 </tr>
                 <tr>
-                    <td>Dólar FIX (Determinación Hoy)</td>
-                    <td id="f-fix">Cargando...</td>
-                    <td class="val-display" id="v-fix">0.0000</td>
+                    <td>Dólar FIX</td>
+                    <td id="f-fix">---</td>
+                    <td class="val-num" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="calc-panel">
-            <div class="input-group">
-                <label>Monto a Convertir (Dólares)</label>
-                <input type="number" id="usd-input" placeholder="0.00" oninput="runCalc()">
-            </div>
-            
+        <div class="calc-section">
+            <label style="display:block; font-size:0.75rem; font-weight:800; color:#64748b; margin-bottom:12px;">CONVERTIR USD A MXN</label>
+            <input type="number" id="monto" class="input-box" placeholder="0.00" oninput="calculate()">
             <div class="res-grid">
-                <div class="res-card active">
-                    <small>TOTAL PARA PAGOS (SAT)</small>
-                    <strong id="res-sat">$ 0.00</strong>
+                <div class="res-item active">
+                    <small style="font-weight:800; font-size:0.6rem; color:#d97706;">PAGO FISCAL (SAT)</small>
+                    <strong id="out-sat">$ 0.00</strong>
                 </div>
-                <div class="res-card">
-                    <small>TOTAL REFERENCIA (FIX)</small>
-                    <strong id="res-fix">$ 0.00</strong>
+                <div class="res-item">
+                    <small style="font-weight:800; font-size:0.6rem; color:#64748b;">REFERENCIA FIX</small>
+                    <strong id="out-fix">$ 0.00</strong>
                 </div>
             </div>
-
-            <div class="actions">
-                <button class="btn btn-copy" onclick="copyResult()">
-                    <span>📋</span> Copiar Resumen
-                </button>
-                <button class="btn btn-print" onclick="window.print()">
-                    <span>🖨️</span> Imprimir Reporte
-                </button>
-            </div>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir Reporte Oficial</button>
         </div>
     </div>
 
-    <div class="history-section">
-        <div class="history-header">
-            <span>Historial Últimos 7 Días (Liquidación)</span>
-            <span style="font-size:0.7rem; color:#94a3b8;">SERIE: SF60653</span>
-        </div>
-        <div class="history-grid" id="hist-grid">
+    <div class="history-card">
+        <div style="font-weight:800; font-size:0.9rem; color:var(--primary);">Tendencia Histórica (Serie SF60653)</div>
+        <div id="historial" class="hist-grid">
             </div>
     </div>
 
-    <div class="ad-banner" style="margin-top:30px;">Anuncio Inferior (Responsivo)</div>
+    <div class="ad-slot" style="margin-top:20px;">PUBLICIDAD INFERIOR</div>
 </div>
 
 <script>
     const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
-    let dLIQ = 17.8368, dFIX = 17.6922; // Valores por defecto en caso de fallo
+    let vL = 0, vF = 0;
 
     async function init() {
         const proxy = "https://api.allorigins.win/get?url=";
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653/datos/oportuno?token=${TOKEN}`;
-        const apiHist = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/2026-03-10/2026-03-17?token=${TOKEN}`;
+        const apiMain = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653,SF43718/datos/oportuno?token=${TOKEN}`;
+        // Pedimos historial desde inicios de marzo para cubrir cualquier hueco
+        const apiHist = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/2026-03-01/2026-03-17?token=${TOKEN}`;
 
         try {
-            // Cargar Datos Oportunos
-            const r = await fetch(proxy + encodeURIComponent(api));
-            const j = await r.json();
-            const series = JSON.parse(j.contents).bmx.series;
+            // Datos Actuales
+            const r1 = await fetch(proxy + encodeURIComponent(apiMain));
+            const j1 = await r1.json();
+            const series = JSON.parse(j1.contents).bmx.series;
             
             series.forEach(s => {
                 const val = parseFloat(s.datos[0].dato);
-                const fec = s.datos[0].fecha;
-                if(s.idSerie === 'SF60653') { 
-                    dLIQ = val; 
+                if(s.idSerie === 'SF60653') {
+                    vL = val;
                     document.getElementById('v-liq').innerText = val.toFixed(4);
-                    document.getElementById('f-liq').innerText = fec;
-                } else { 
-                    dFIX = val; 
+                    document.getElementById('f-liq').innerText = s.datos[0].fecha;
+                } else {
+                    vF = val;
                     document.getElementById('v-fix').innerText = val.toFixed(4);
-                    document.getElementById('f-fix').innerText = fec;
+                    document.getElementById('f-fix').innerText = s.datos[0].fecha;
                 }
             });
 
-            // Cargar Historial
-            const rH = await fetch(proxy + encodeURIComponent(apiHist));
-            const jH = await rH.json();
-            const hist = JSON.parse(jH.contents).bmx.series[0].datos.reverse();
-            let hHtml = '';
-            hist.slice(0, 7).forEach(h => {
-                hHtml += `<div class="hist-item">
-                            <span class="hist-date">${h.fecha}</span>
-                            <span class="hist-val">${parseFloat(h.dato).toFixed(4)}</span>
-                          </div>`;
+            // Historial (Garantiza 7 días)
+            const r2 = await fetch(proxy + encodeURIComponent(apiHist));
+            const j2 = await r2.json();
+            const hData = JSON.parse(j2.contents).bmx.series[0].datos.reverse();
+            let hMarkup = '';
+            hData.slice(0, 7).forEach(h => {
+                hMarkup += `<div class="hist-day">
+                                <span class="h-fec">${h.fecha}</span>
+                                <span class="h-val">${parseFloat(h.dato).toFixed(4)}</span>
+                            </div>`;
             });
-            document.getElementById('hist-grid').innerHTML = hHtml;
+            document.getElementById('historial').innerHTML = hMarkup;
 
-        } catch (e) { console.log("Usando valores de respaldo."); updateStatic(); }
+        } catch (e) {
+            console.error("Error conectando con la fuente.");
+        }
     }
 
-    function updateStatic() {
-        document.getElementById('v-liq').innerText = dLIQ.toFixed(4);
-        document.getElementById('f-liq').innerText = "Vigente Hoy";
-        document.getElementById('v-fix').innerText = dFIX.toFixed(4);
-        document.getElementById('f-fix').innerText = "Determinado Hoy";
-    }
-
-    function runCalc() {
-        const m = document.getElementById('usd-input').value;
-        document.getElementById('res-sat').innerText = '$ ' + (m * dLIQ).toLocaleString('es-MX', {minimumFractionDigits: 2});
-        document.getElementById('res-fix').innerText = '$ ' + (m * dFIX).toLocaleString('es-MX', {minimumFractionDigits: 2});
-    }
-
-    function copyResult() {
-        const m = document.getElementById('usd-input').value || 0;
-        const txt = `Resumen Tipo de Cambio SAT\nFecha: ${new Date().toLocaleDateString()}\nUSD: ${m}\nTC Liquidación: ${dLIQ}\nTotal MXN: $${(m * dLIQ).toFixed(2)}`;
-        navigator.clipboard.writeText(txt);
-        alert("¡Resumen copiado al portapapeles!");
+    function calculate() {
+        const m = document.getElementById('monto').value;
+        document.getElementById('out-sat').innerText = '$ ' + (m * vL).toLocaleString('es-MX',{minimumFractionDigits:2});
+        document.getElementById('out-fix').innerText = '$ ' + (m * vF).toLocaleString('es-MX',{minimumFractionDigits:2});
     }
 
     init();
