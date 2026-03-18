@@ -2,22 +2,22 @@
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
-    <title>Tipo de Cambio SAT | Banxico Oficial</title>
+    <title>Tipo de Cambio SAT Hoy | Datos Oficiales CF102</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #1e293b; }
         .wrapper { max-width: 800px; margin: 0 auto; }
-        .ad-box { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; }
+        .ad-space { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.7rem; text-transform: uppercase; }
         header { text-align: center; margin-bottom: 30px; }
         h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; }
-        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; }
+        .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; }
         th { background: #f8fafc; padding: 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
         td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 1.1rem; }
         .precio { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.5rem; text-align: right; }
         .row-sat { background: #fffbeb; border-left: 6px solid var(--accent); }
-        .calc { padding: 30px; border-top: 1px solid #f1f5f9; text-align: center; }
+        .calc-panel { padding: 30px; background: #fff; border-top: 1px solid #f1f5f9; text-align: center; }
         input { width: 100%; max-width: 300px; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; }
         .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .res-item { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; }
@@ -27,99 +27,109 @@
 <body>
 
 <div class="wrapper">
-    <div class="ad-box">Publicidad Superior</div>
+    <div class="ad-space">PUBLICIDAD SUPERIOR (728x90)</div>
     <header>
         <h1>Tipo de Cambio SAT Hoy</h1>
-        <p>Datos en tiempo real del Cuadro CF102</p>
+        <p>Datos Oficiales Banxico | Sincronizado CF102</p>
     </header>
 
     <div class="card">
         <table>
             <thead>
                 <tr>
-                    <th>Concepto</th>
-                    <th>Fecha</th>
-                    <th style="text-align: right;">Valor MXN</th>
+                    <th>Concepto Oficial</th>
+                    <th>Fecha Vigencia</th>
+                    <th style="text-align: right;">MXN por USD</th>
                 </tr>
             </thead>
-            <tbody id="tabla-datos">
+            <tbody>
                 <tr class="row-sat">
                     <td><strong>Liquidación (DOF)</strong></td>
-                    <td id="f-liq">Cargando...</td>
+                    <td id="f-liq">---</td>
                     <td class="precio" id="v-liq" style="color:var(--accent)">0.0000</td>
                 </tr>
                 <tr>
                     <td>Dólar FIX</td>
-                    <td id="f-fix">Cargando...</td>
+                    <td id="f-fix">---</td>
                     <td class="precio" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="calc">
-            <label style="display:block; font-size:0.7rem; font-weight:800; margin-bottom:10px; color:#64748b;">CONVERTIR DÓLARES (USD)</label>
+        <div class="calc-panel">
+            <label style="display:block; font-size:0.75rem; font-weight:800; margin-bottom:10px; color:#64748b;">CONVERTIR MONTO (USD)</label>
             <input type="number" id="monto" placeholder="0.00" oninput="doCalc()">
             <div class="res-grid">
                 <div class="res-item gold">
-                    <small style="display:block; margin-bottom:5px; font-weight:800; color:#64748b;">PARA PAGOS SAT</small>
+                    <span style="font-size:0.7rem; font-weight:800; display:block; color:#64748b;">PARA PAGOS SAT</span>
                     <strong id="res-sat" style="font-size:1.6rem; color:var(--accent)">$ 0.00</strong>
                 </div>
                 <div class="res-item">
-                    <small style="display:block; margin-bottom:5px; font-weight:800; color:#64748b;">REFERENCIA FIX</small>
+                    <span style="font-size:0.7rem; font-weight:800; display:block; color:#64748b;">REFERENCIA FIX</span>
                     <strong id="res-fix" style="font-size:1.6rem; color:var(--primary)">$ 0.00</strong>
                 </div>
             </div>
         </div>
         <div style="padding:15px; font-size:0.7rem; color:#94a3b8; text-align:center; border-top:1px solid #f1f5f9;">
-            Fuente oficial: Banco de México SIE. Los valores corresponden a la liquidación de obligaciones fiscales.
+            Fuente oficial: Banco de México SIE. Los valores corresponden a la liquidación de obligaciones fiscales (DOF).
         </div>
     </div>
-    <div class="ad-box">Publicidad Inferior</div>
+    <div class="ad-space">PUBLICIDAD INFERIOR</div>
 </div>
 
 <script>
-    // --- CONFIGURACIÓN ---
     const TOKEN = '19c001bf446f62cf3a246ce8df5b34bff4bab4fd60f8527c84c2abc8f0becc61'; 
-    let dLIQ = 0, dFIX = 0;
+    let vLIQ = 0, vFIX = 0;
 
-    async function obtenerDatos() {
-        // Usamos un proxy que suele ser más estable para peticiones desde local
+    // Función para calcular la fecha de ayer (formato Banxico YYYY-MM-DD)
+    function getYesterday() {
+        let d = new Date();
+        d.setDate(d.getDate() - 1);
+        let month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+        return [year, month, day].join('-');
+    }
+
+    async function cargarDatos() {
         const proxy = "https://api.allorigins.win/get?url=";
-        const api = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718,SF60653/datos/oportuno?token=${TOKEN}`;
+        const fechaAyer = getYesterday();
+        
+        // Petición 1: Pedimos el HISTÓRICO de liquidación de ayer (donde vive el 17.8368)
+        const apiLiq = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653/datos/${fechaAyer}/${fechaAyer}?token=${TOKEN}`;
+        // Petición 2: Pedimos el FIX OPORTUNO de hoy (para referencia)
+        const apiFix = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/oportuno?token=${TOKEN}`;
         
         try {
-            const resp = await fetch(proxy + encodeURIComponent(api));
-            const json = await resp.json();
-            const data = JSON.parse(json.contents);
-            const series = data.bmx.series;
+            // Carga de Liquidación (Fecha Ayer)
+            const rLiq = await fetch(proxy + encodeURIComponent(apiLiq));
+            const jLiq = await rLiq.json();
+            const sLiq = JSON.parse(jLiq.contents).bmx.series[0];
+            vLIQ = parseFloat(sLiq.datos[0].dato);
+            document.getElementById('v-liq').innerText = vLIQ.toFixed(4);
+            document.getElementById('f-liq').innerText = sLiq.datos[0].fecha;
 
-            series.forEach(s => {
-                const valor = parseFloat(s.datos[0].dato);
-                const fecha = s.datos[0].fecha;
+            // Carga de FIX (Oportuno)
+            const rFix = await fetch(proxy + encodeURIComponent(apiFix));
+            const jFix = await rFix.json();
+            const sFix = JSON.parse(jFix.contents).bmx.series[0];
+            vFIX = parseFloat(sFix.datos[0].dato);
+            document.getElementById('v-fix').innerText = vFIX.toFixed(4);
+            document.getElementById('f-fix').innerText = sFix.datos[0].fecha;
 
-                if(s.idSerie === 'SF60653') {
-                    dLIQ = valor;
-                    document.getElementById('v-liq').innerText = valor.toFixed(4);
-                    document.getElementById('f-liq').innerText = fecha;
-                } else if(s.idSerie === 'SF43718') {
-                    dFIX = valor;
-                    document.getElementById('v-fix').innerText = valor.toFixed(4);
-                    document.getElementById('f-fix').innerText = fecha;
-                }
-            });
-        } catch (e) {
-            document.getElementById('f-liq').innerText = "Error Token";
-            console.error("Error al conectar con Banxico");
-        }
+        } catch (e) { console.error("Error en sincronización Banxico"); }
     }
 
     function doCalc() {
         const m = document.getElementById('monto').value;
-        document.getElementById('res-sat').innerText = '$ ' + (m * dLIQ).toLocaleString('es-MX', {minimumFractionDigits: 2});
-        document.getElementById('res-fix').innerText = '$ ' + (m * dFIX).toLocaleString('es-MX', {minimumFractionDigits: 2});
+        if (m > 0) {
+            document.getElementById('res-sat').innerText = '$ ' + (m * vLIQ).toLocaleString('es-MX', {minimumFractionDigits: 2});
+            document.getElementById('res-fix').innerText = '$ ' + (m * vFIX).toLocaleString('es-MX', {minimumFractionDigits: 2});
+        }
     }
-
-    obtenerDatos();
+    cargarDatos();
 </script>
 </body>
 </html>
