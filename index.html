@@ -3,81 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dólar SAT Hoy | Tipo de Cambio Oficial Banxico</title>
+    
+    <title>Tipo de Cambio SAT Hoy | Dólar Oficial Banxico 2026</title>
+    <meta name="description" content="Consulta el tipo de cambio SAT oficial para la liquidación de obligaciones hoy 18 de marzo. Datos directos de Banxico, exactos y actualizados al minuto.">
+    <meta name="keywords" content="tipo de cambio SAT, dólar SAT hoy, tipo de cambio oficial México, dólar Banxico liquidación, SAT tipo de cambio 2026">
+    <link rel="canonical" href="https://tudominio.com/" />
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
     <style>
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; padding: 10px; color: #1e293b; }
         .wrapper { max-width: 800px; margin: 0 auto; }
-        .ad-slot { background: #e2e8f0; border: 1px dashed #94a3b8; border-radius: 12px; margin: 15px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.7rem; text-transform: uppercase; }
-        header { text-align: center; margin: 20px 0; }
-        h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1.5px; }
-        .card { background: #fff; border-radius: 20px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 20px; }
+        .ad-slot { background: #e2e8f0; border: 1px dashed #94a3b8; border-radius: 12px; margin: 15px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        header { text-align: center; margin: 25px 0; }
+        h1 { color: var(--primary); font-size: 2.4rem; font-weight: 800; margin: 0; letter-spacing: -1.5px; }
+        .card { background: #fff; border-radius: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 25px; }
         .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th { background: #f8fafc; padding: 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; }
-        .data-table td { padding: 18px 15px; border-bottom: 1px solid #f1f5f9; }
-        .val-num { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.8rem; text-align: right; }
+        .data-table th { background: #f8fafc; padding: 18px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; border-bottom: 1px solid #f1f5f9; }
+        .data-table td { padding: 22px 18px; border-bottom: 1px solid #f1f5f9; }
+        .val-num { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.9rem; text-align: right; }
         .row-sat { background: #fffbeb; border-left: 8px solid var(--accent); }
         .row-sat .val-num { color: var(--accent); }
-        .calc-area { padding: 30px; text-align: center; border-top: 1px solid #f1f5f9; }
-        .input-main { width: 100%; max-width: 300px; padding: 12px; font-size: 2rem; border: 3px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; }
-        .res-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .res-box { padding: 18px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .calc-area { padding: 40px; text-align: center; border-top: 1px solid #f1f5f9; }
+        .input-main { width: 100%; max-width: 320px; padding: 15px; font-size: 2.2rem; border: 3px solid #e2e8f0; border-radius: 16px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); outline: none; transition: border-color 0.3s; }
+        .input-main:focus { border-color: var(--accent); }
+        .res-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .res-box { padding: 22px; border-radius: 16px; background: #f8fafc; border: 1px solid #e2e8f0; }
         .res-box.active { border-color: var(--accent); background: #fffbeb; }
-        .res-box strong { display: block; font-size: 1.5rem; margin-top: 5px; color: var(--accent); }
-        .status-bar { padding: 10px; font-size: 0.65rem; text-align: center; color: #94a3b8; font-weight: 700; text-transform: uppercase; border-top: 1px solid #f1f5f9; }
-        .dot { height: 8px; width: 8px; background-color: #ef4444; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .res-box strong { display: block; font-size: 1.7rem; margin-top: 5px; color: var(--accent); }
+        .status-bar { padding: 12px; font-size: 0.7rem; text-align: center; color: #94a3b8; font-weight: 800; text-transform: uppercase; background: #f8fafc; }
+        .dot { height: 9px; width: 9px; background-color: #ef4444; border-radius: 50%; display: inline-block; margin-right: 6px; }
         .dot.online { background-color: #22c55e; }
-        .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 15px; }
-        .h-item { text-align: center; padding: 10px; background: white; border-radius: 10px; border: 1px solid #e2e8f0; }
-        .h-fec { font-size: 0.6rem; color: #94a3b8; display: block; }
-        .h-val { font-family: 'Roboto Mono', monospace; font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+        .hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin-top: 20px; }
+        .h-item { text-align: center; padding: 12px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .h-fec { font-size: 0.65rem; color: #94a3b8; display: block; font-weight: 700; }
+        .h-val { font-family: 'Roboto Mono', monospace; font-size: 0.9rem; font-weight: 700; color: var(--primary); }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="ad-slot">Espacio para Publicidad Superior</div>
+    <div class="ad-slot">Tu Publicidad Aquí (Espacio para Google AdSense)</div>
+    
     <header>
         <h1>Dólar SAT Hoy</h1>
-        <p>Valores Reales Sincronizados con Banxico (SIE)</p>
+        <p>Consulta el tipo de cambio oficial para liquidación de obligaciones</p>
     </header>
 
     <div class="card">
         <table class="data-table">
             <thead>
-                <tr><th>Concepto</th><th>Vigencia Fiscal</th><th style="text-align: right;">MXN</th></tr>
+                <tr><th>Concepto Oficial</th><th>Vigencia Fiscal</th><th style="text-align: right;">MXN por USD</th></tr>
             </thead>
             <tbody>
                 <tr class="row-sat">
                     <td><strong>Liquidación (DOF)</strong></td>
-                    <td id="f-liq">Esperando API...</td>
+                    <td id="f-liq">Sincronizando...</td>
                     <td class="val-num" id="v-liq">0.0000</td>
                 </tr>
                 <tr>
                     <td>Dólar FIX</td>
-                    <td id="f-fix">Esperando API...</td>
+                    <td id="f-fix">Sincronizando...</td>
                     <td class="val-num" id="v-fix">0.0000</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="calc-area">
+            <label style="display:block; font-size:0.75rem; font-weight:800; color:#64748b; margin-bottom:15px;">CONVERTIDOR DE DIVISAS (USD)</label>
             <input type="number" id="monto" class="input-main" placeholder="0.00" oninput="calculate()">
+            
             <div class="res-container">
-                <div class="res-box active"><small>TOTAL PAGO SAT</small><strong id="r-sat">$ 0.00</strong></div>
-                <div class="res-box"><small>TOTAL REF. FIX</small><strong id="r-fix" style="color:#1e3a8a">$ 0.00</strong></div>
+                <div class="res-box active">
+                    <small style="font-weight:800;">VALOR PAGO SAT</small>
+                    <strong id="r-sat">$ 0.00</strong>
+                </div>
+                <div class="res-box">
+                    <small style="font-weight:800; color:#64748b;">REFERENCIA FIX</small>
+                    <strong id="r-fix" style="color:#1e3a8a;">$ 0.00</strong>
+                </div>
             </div>
         </div>
-        <div class="status-bar"><span id="dot" class="dot"></span> <span id="st-text">Sincronizando con Banxico...</span></div>
+        <div class="status-bar"><span id="dot" class="dot"></span> <span id="st-text">Conectando con Servidores Banxico...</span></div>
     </div>
 
+    <div style="font-weight:800; color:var(--primary); font-size:0.9rem; margin-top:10px;">Historial de Liquidación (7 Días)</div>
     <div id="hist" class="hist-grid"></div>
-    <div class="ad-slot" style="margin-top:20px;">Espacio para Publicidad Inferior</div>
+
+    <div class="ad-slot" style="margin-top:25px;">Tu Publicidad Aquí (Espacio Inferior)</div>
 </div>
 
 <script>
-    const TOKEN = '7e9e538267bd99e4b431c0e1bad6979008dc71dccc1fc0997492ee373dab47e3'; // PEGA TU TOKEN AQUÍ
+    const TOKEN = '7e9e538267bd99e4b431c0e1bad6979008dc71dccc1fc0997492ee373dab47e3'; // <--- PEGA TU TOKEN AQUÍ
     let valSAT = 0, valFIX = 0;
 
     async function sync(pIdx = 0) {
@@ -88,26 +107,21 @@
         ];
 
         if(pIdx >= PROXIES.length) {
-            document.getElementById('st-text').innerText = "ERROR: No se pudo conectar con Banxico.";
+            document.getElementById('st-text').innerText = "ERROR DE CONEXIÓN. REINTENTE.";
             return;
         }
 
-        // Consultamos un rango de 10 días para asegurar que tenemos datos de liquidación vigentes
         const apiURL = `https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF60653,SF43718/datos/2026-03-08/2026-03-18?token=${TOKEN}`;
         
         try {
             const resp = await fetch(PROXIES[pIdx] + encodeURIComponent(apiURL), { signal: AbortSignal.timeout(6000) });
             const raw = await resp.json();
-            
-            // Detección y limpieza del JSON según el Proxy
             const bmx = (raw.contents) ? JSON.parse(raw.contents).bmx : raw.bmx;
             const series = bmx.series;
 
             series.forEach(s => {
                 const d = s.datos;
                 if(s.idSerie === 'SF60653') {
-                    // REGLA FISCAL: Para hoy Miércoles 18, el valor legal de pago es el FIX determinado ayer.
-                    // Banxico puede ya haber publicado el de mañana, por eso buscamos el penúltimo si el último es de hoy.
                     const hoyIso = new Date().toISOString().split('T')[0];
                     const ultimo = d[d.length - 1];
                     const legal = (ultimo.fecha === hoyIso && d.length > 1) ? d[d.length - 2] : ultimo;
@@ -116,14 +130,12 @@
                     document.getElementById('v-liq').innerText = valSAT.toFixed(4);
                     document.getElementById('f-liq').innerText = legal.fecha;
 
-                    // Llenado de historial real
                     let h = '';
                     [...d].reverse().slice(0,7).forEach(x => {
                         h += `<div class="h-item"><span class="h-fec">${x.fecha}</span><span class="h-val">${parseFloat(x.dato).toFixed(4)}</span></div>`;
                     });
                     document.getElementById('hist').innerHTML = h;
                 } else {
-                    // Dólar FIX es el último publicado hoy
                     const fixU = d[d.length - 1];
                     valFIX = parseFloat(fixU.dato);
                     document.getElementById('v-fix').innerText = valFIX.toFixed(4);
@@ -132,19 +144,20 @@
             });
 
             document.getElementById('dot').className = "dot online";
-            document.getElementById('st-text').innerText = "Verificado: Datos Oficiales de Banxico";
+            document.getElementById('st-text').innerText = "SINCRONIZADO: BANXICO OFICIAL (PROXY " + (pIdx + 1) + ")";
             calculate();
 
         } catch (e) {
-            console.warn(`Proxy ${pIdx + 1} falló, reintentando con el siguiente...`);
             sync(pIdx + 1);
         }
     }
 
     function calculate() {
         const m = document.getElementById('monto').value;
-        document.getElementById('r-sat').innerText = '$ ' + (m * valSAT).toLocaleString('es-MX',{minimumFractionDigits:2});
-        document.getElementById('r-fix').innerText = '$ ' + (m * valFIX).toLocaleString('es-MX',{minimumFractionDigits:2});
+        if(m > 0) {
+            document.getElementById('r-sat').innerText = '$ ' + (m * valSAT).toLocaleString('es-MX',{minimumFractionDigits:2});
+            document.getElementById('r-fix').innerText = '$ ' + (m * valFIX).toLocaleString('es-MX',{minimumFractionDigits:2});
+        }
     }
 
     sync();
