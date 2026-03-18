@@ -9,19 +9,11 @@
         :root { --primary: #1e3a8a; --accent: #d97706; --bg: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: #1e293b; padding: 20px; }
         .wrapper { max-width: 800px; margin: 0 auto; }
-        
-        /* Espacios para Publicidad */
         .ad-top, .ad-bottom { background: #e2e8f0; border: 2px dashed #cbd5e1; border-radius: 12px; margin-bottom: 30px; min-height: 90px; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; }
-
-        /* Encabezado */
         header { text-align: center; margin-bottom: 30px; }
         h1 { color: var(--primary); font-size: 2.2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
         header p { color: #64748b; font-size: 1.1rem; margin: 10px 0 0 0; }
-
-        /* Card Principal */
         .card { background: #fff; border-radius: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 30px; }
-        
-        /* Tabla Técnica CF102 */
         table { width: 100%; border-collapse: collapse; }
         th { background: #f8fafc; padding: 12px 15px; text-align: left; font-size: 0.7rem; color: #64748b; text-transform: uppercase; border-bottom: 2px solid #f1f5f9; }
         td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
@@ -29,35 +21,27 @@
         .precio { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 1.2rem; text-align: right; }
         .date-main { font-weight: 700; display: block; color: #334155; }
         .date-sub { font-size: 0.65rem; color: #94a3b8; display: block; margin-top: 2px; }
-
         .row-gold { background: #fffbeb; border-left: 6px solid var(--accent); }
-
-        /* Calculadora */
         .calc-panel { padding: 30px; background: #fff; border-top: 1px solid #f1f5f9; }
         .input-group { max-width: 400px; margin: 0 auto 25px auto; text-align: center; }
         label { font-size: 0.75rem; font-weight: 800; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 10px; }
         input { width: 100%; padding: 15px; font-size: 2rem; border: 2px solid #e2e8f0; border-radius: 12px; text-align: center; font-family: 'Roboto Mono', monospace; color: var(--primary); }
-        
         .results { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .res-box { padding: 20px; border-radius: 15px; background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; }
         .res-box span { font-size: 0.7rem; font-weight: 800; color: #64748b; display: block; margin-bottom: 5px; text-transform: uppercase; }
         .res-box strong { font-size: 1.5rem; color: var(--primary); }
         .res-box.active { border-color: var(--accent); background: #fffbeb; }
         .res-box.active strong { color: var(--accent); }
-
         .footer-note { padding: 20px; background: #f8fafc; font-size: 0.75rem; color: #64748b; border-top: 1px solid #e2e8f0; line-height: 1.5; }
     </style>
 </head>
 <body>
-
 <div class="wrapper">
     <div class="ad-top">ESPACIO PARA PUBLICIDAD (BANNER 728x90)</div>
-
     <header>
         <h1>Tipo de Cambio SAT y Banxico</h1>
         <p>Consulta del Cuadro CF102 en tiempo real</p>
     </header>
-
     <div class="card">
         <table>
             <thead>
@@ -70,31 +54,21 @@
             <tbody>
                 <tr>
                     <td>Dólar FIX <span class="serie">SF43718</span></td>
-                    <td>
-                        <span class="date-main" id="f-fix">--/--/--</span>
-                        <span class="date-sub">Determinación (Hoy)</span>
-                    </td>
+                    <td><span class="date-main" id="f-fix">Consultando...</span><span class="date-sub">Determinación (Hoy)</span></td>
                     <td class="precio" id="v-fix">0.0000</td>
                 </tr>
                 <tr class="row-gold">
                     <td>Dólar para Pagos DOF <span class="serie">SF60653</span></td>
-                    <td>
-                        <span class="date-main" id="f-dof">--/--/--</span>
-                        <span class="date-sub">Liquidación / Vigencia Fiscal</span>
-                    </td>
+                    <td><span class="date-main" id="f-dof">Consultando...</span><span class="date-sub">Liquidación / Vigencia Fiscal</span></td>
                     <td class="precio" id="v-dof" style="color:var(--accent)">0.0000</td>
                 </tr>
                 <tr>
                     <td>Dólar EUA <span class="serie">SF43787</span></td>
-                    <td>
-                        <span class="date-main" id="f-eua">--/--/--</span>
-                        <span class="date-sub">Fecha de Publicación</span>
-                    </td>
+                    <td><span class="date-main" id="f-eua">Consultando...</span><span class="date-sub">Fecha de Publicación</span></td>
                     <td class="precio" id="v-eua">0.0000</td>
                 </tr>
             </tbody>
         </table>
-
         <div class="calc-panel">
             <div class="input-group">
                 <label>Cantidad en Dólares (USD)</label>
@@ -102,7 +76,7 @@
             </div>
             <div class="results">
                 <div class="res-box active">
-                    <span>TOTAL FISCAL (DOF)</span>
+                    <span>TOTAL PARA PAGOS (DOF)</span>
                     <strong id="res-dof">$ 0.0000</strong>
                 </div>
                 <div class="res-box">
@@ -112,10 +86,9 @@
             </div>
         </div>
         <div class="footer-note">
-            <strong>Nota Técnica:</strong> Datos sincronizados con el Banco de México. El tipo de cambio para solventar obligaciones fiscales es el DOF (Naranja). El FIX es determinado hoy para liquidación futura.
+            <strong>Nota Técnica:</strong> Datos sincronizados con el Banco de México (Cuadro CF102). El DOF es el valor legal para pagos hoy. El FIX es el determinado hoy para liquidación mañana.
         </div>
     </div>
-
     <div class="ad-bottom">ESPACIO PARA PUBLICIDAD (CONTENIDO RELACIONADO)</div>
 </div>
 
@@ -130,19 +103,27 @@
         try {
             const r = await fetch(proxy + encodeURIComponent(api));
             const j = await r.json();
-            const s = JSON.parse(j.contents).bmx.series;
+            const series = JSON.parse(j.contents).bmx.series;
             
-            valFIX = parseFloat(s[0].datos[0].dato);
-            document.getElementById('v-fix').innerText = valFIX.toFixed(4);
-            document.getElementById('f-fix').innerText = s[0].datos[0].fecha;
+            // MAPEO POR ID DE SERIE (Esto garantiza que los valores no se crucen)
+            series.forEach(s => {
+                const dato = parseFloat(s.datos[0].dato);
+                const fecha = s.datos[0].fecha;
 
-            valDOF = parseFloat(s[1].datos[0].dato);
-            document.getElementById('v-dof').innerText = valDOF.toFixed(4);
-            document.getElementById('f-dof').innerText = s[1].datos[0].fecha;
-
-            document.getElementById('v-eua').innerText = parseFloat(s[2].datos[0].dato).toFixed(4);
-            document.getElementById('f-eua').innerText = s[2].datos[0].fecha;
-        } catch (e) { console.error("Error SIE"); }
+                if(s.idSerie === 'SF43718') { // FIX
+                    valFIX = dato;
+                    document.getElementById('v-fix').innerText = dato.toFixed(4);
+                    document.getElementById('f-fix').innerText = fecha;
+                } else if(s.idSerie === 'SF60653') { // DOF Pagos
+                    valDOF = dato;
+                    document.getElementById('v-dof').innerText = dato.toFixed(4);
+                    document.getElementById('f-dof').innerText = fecha;
+                } else if(s.idSerie === 'SF43787') { // EUA
+                    document.getElementById('v-eua').innerText = dato.toFixed(4);
+                    document.getElementById('f-eua').innerText = fecha;
+                }
+            });
+        } catch (e) { console.error("Error SIE:", e); }
     }
 
     function recalc() {
